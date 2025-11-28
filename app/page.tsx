@@ -1,13 +1,11 @@
-import React from 'react'
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
 
-const HomePage = async ({params} : {params: { id:string } }) => {
+const HomePage = async ({ params }: { params: { id: string } }) => {
   return (
     <div>
-
       {/* HERO */}
       <div className="relative h-[100vh] w-full">
-
         <Image
           src="/background.webp"
           alt="Hero background"
@@ -21,14 +19,13 @@ const HomePage = async ({params} : {params: { id:string } }) => {
         <div className="relative z-10 h-full flex justify-center items-center">
           <h1 className="text-white text-5xl font-bold">Bienvenue</h1>
         </div>
-
       </div>
 
-      <section className="p-10">
+      <section className="p-10 min-h-[150vh]">
         <p>Contenu du site…</p>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

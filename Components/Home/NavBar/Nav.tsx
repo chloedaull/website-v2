@@ -1,12 +1,28 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Si4Chan } from "react-icons/si";
 import { navLinks } from "@/constant/constant";
 import Link from "next/link";
 import { HiBars3BottomRight } from "react-icons/hi2";
 
-const Nav = () => {
+type Props = {
+  openNav: () => void;
+};
+
+const Nav = ({ openNav }: Props) => {
+  const [navbg, setNavbg] = useState(false);
+
+  useEffect(() => {
+    const handler = () => {
+      if (window.scrollY >= 90) setNavbg(true);
+      if (window.scrollY < 90) setNavbg(false);
+    };
+    window.addEventListener("scroll", handler);
+
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
   return (
-    <div className="transition-all duration-200 h-[12vh] z-[100] fixed w-full">
+    <div className="fixed w-full h-[12vh] z-[100] flex flex-col transition-all duration-200">
       <div className="flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto">
         {/* LOGO */}
         <div className="flex items-center space-x-2">
@@ -21,12 +37,12 @@ const Nav = () => {
         <div className="hidden lg:flex items-center space-x-10">
           {navLinks.map((link) => {
             return (
-              <Link
-                href={link.url}
-                key={link.id}
-                className="text-white hover:underline font-semiblo transition-all duration-200"
-              >
-                <p>{link.label}</p>
+              <Link href={link.url} key={link.id} className="relative group">
+                <p className="text-white font-semibold">{link.label}</p>
+                <span
+                  className="absolute left-0 -bottom-5 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full"
+                  style={{ backgroundColor: "#A67B5B" }}
+                ></span>
               </Link>
             );
           })}
@@ -51,9 +67,18 @@ const Nav = () => {
             </span>
           </a>
           {/*Burger menu*/}
-          <HiBars3BottomRight className="w-8 h-8 cursor-pointer text-white lg:hidden" />
+          <HiBars3BottomRight
+            onClick={openNav}
+            className="w-8 h-8 cursor-pointer text-white lg:hidden"
+          />
         </div>
       </div>
+      {/* Bottom bar that appears on scroll */}
+      <div
+        className={`h-0.5 w-full transition-all duration-200 ${
+          navbg ? "bg-black shadow-md" : "bg-transparent"
+        }`}
+      />
     </div>
   );
 };
