@@ -2,13 +2,13 @@
 import type { Metadata } from "next";
 import { Rethink_Sans } from "next/font/google";
 import "./globals.css";
-import ResponsiveNav from "@/Components/Home/NavBar/ResponsiveNav";
+import ResponsiveNav from "@/Segments/Home/NavBar/ResponsiveNav";
 
 const font = Rethink_Sans({
-  weight:['400','500','600','700','800'],
-  subsets:['latin']
-})
- 
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Chloe's Website",
   description: "Chloe's Webiste using Next.js",
@@ -21,10 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
-      <body
-        className={`${font.className} antialiased`}
-      >
+      <body className={`${font.className} antialiased`}>
         <ResponsiveNav></ResponsiveNav>
         {children}
       </body>

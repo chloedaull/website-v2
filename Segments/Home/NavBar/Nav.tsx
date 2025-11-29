@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { Si4Chan } from "react-icons/si";
 import { navLinks } from "@/constant/constant";
@@ -11,18 +12,41 @@ type Props = {
 
 const Nav = ({ openNav }: Props) => {
   const [navbg, setNavbg] = useState(false);
+  const [showNav, setShowNav] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const handler = () => {
-      if (window.scrollY >= 90) setNavbg(true);
-      if (window.scrollY < 90) setNavbg(false);
-    };
-    window.addEventListener("scroll", handler);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
+      if (currentScrollY < 90) {
+        setNavbg(false);
+        setShowNav(true);
+      } else {
+        setNavbg(true);
+        if (currentScrollY > lastScrollY) {
+          setShowNav(false);
+        } else {
+          setShowNav(true);
+        }
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <div className="fixed w-full h-[12vh] z-[100] flex flex-col transition-all duration-200">
+    <div
+      className={`fixed w-full h-[12vh] z-[100] flex flex-col transition-transform duration-300 ${
+        showNav ? "translate-y-0" : "-translate-y-full"
+      }`}
+      style={{
+        backgroundColor: navbg ? "#A67B5B" : "transparent",
+      }}
+    >
       <div className="flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto">
         {/* LOGO */}
         <div className="flex items-center space-x-2">
@@ -35,19 +59,17 @@ const Nav = ({ openNav }: Props) => {
         </div>
         {/* NavLinks */}
         <div className="hidden lg:flex items-center space-x-10">
-          {navLinks.map((link) => {
-            return (
-              <Link href={link.url} key={link.id} className="relative group">
-                <p className="text-white font-semibold">{link.label}</p>
-                <span
-                  className="absolute left-0 -bottom-5 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full"
-                  style={{ backgroundColor: "#A67B5B" }}
-                ></span>
-              </Link>
-            );
-          })}
+          {navLinks.map((link) => (
+            <Link href={link.url} key={link.id} className="relative group">
+              <p className="text-white font-semibold">{link.label}</p>
+              <span
+                className="absolute left-0 -bottom-5 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full"
+                style={{ backgroundColor: "#A67B5B" }}
+              />
+            </Link>
+          ))}
         </div>
-        {/*Button*/}
+        {/* Button */}
         <div className="flex items-center space-x-4">
           <a
             href="#_"
@@ -56,28 +78,29 @@ const Nav = ({ openNav }: Props) => {
             <span
               className="absolute inset-0 w-full h-full mt-1 ml-1 transition-all duration-300 ease-in-out rounded-md group-hover:mt-0 group-hover:ml-0"
               style={{ backgroundColor: "#A67B5B" }}
-            ></span>
-            <span className="absolute inset-0 w-full h-full bg-white rounded-md "></span>
+            />
+            <span className="absolute inset-0 w-full h-full bg-white rounded-md " />
             <span
               className="absolute inset-0 w-full h-full transition-all duration-200 ease-in-out delay-100 rounded-md opacity-0 group-hover:opacity-100"
               style={{ backgroundColor: "#A67B5B" }}
-            ></span>
+            />
             <span className="relative text-black transition-colors duration-200 ease-in-out delay-100 group-hover:text-black">
               Contact
             </span>
           </a>
-          {/*Burger menu*/}
+          {/* Burger menu */}
           <HiBars3BottomRight
             onClick={openNav}
             className="w-8 h-8 cursor-pointer text-white lg:hidden"
           />
         </div>
       </div>
-      {/* Bottom bar that appears on scroll */}
+      {/* Bottom bar */}
       <div
         className={`h-0.5 w-full transition-all duration-200 ${
-          navbg ? "bg-black shadow-md" : "bg-transparent"
+          navbg ? "shadow-md" : "bg-transparent"
         }`}
+        style={{ backgroundColor: navbg ? "#A67B5B" : "transparent" }}
       />
     </div>
   );

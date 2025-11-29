@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Home from "@/Segments/Home/Home";
 
 const HomePage = async ({ params }: { params: { id: string } }) => {
   return (
@@ -22,7 +23,7 @@ const HomePage = async ({ params }: { params: { id: string } }) => {
       </div>
 
       <section className="p-10 min-h-[150vh]">
-        <p>Contenu du site…</p>
+        <Home />
       </section>
     </div>
   );
