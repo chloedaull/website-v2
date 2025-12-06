@@ -30,10 +30,7 @@ const AnimatedLetters = ({ text, isActive }) => {
         <span
           key={i}
           style={{
-            color:
-              i < highlightCount
-                ? "#4A5568" /* elegant slate gray */
-                : "#A0AEC0" /* soft gray */,
+            color: i < highlightCount ? "#4A5568" : "#A0AEC0",
             transition: "color 0.3s ease",
             whiteSpace: "pre",
           }}
