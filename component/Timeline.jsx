@@ -25,14 +25,14 @@ const AnimatedLetters = ({ text, isActive }) => {
   }, [isActive, text.length]);
 
   return (
-    <span>
+    <span className="break-words">
       {text.split("").map((char, i) => (
         <span
           key={i}
           style={{
             color: i < highlightCount ? "#4A5568" : "#A0AEC0",
             transition: "color 0.3s ease",
-            whiteSpace: "pre",
+            whiteSpace: "pre-wrap",
           }}
         >
           {char}
@@ -79,8 +79,11 @@ export const Timeline = ({ data }) => {
   }, [data]);
 
   return (
-    <div ref={containerRef} className="c-space pt-10 pb-20 mx-4 md:mx-20">
-      <h2 className="text-4xl font-bold tracking-wide text-[#3A2F2A] text-center mb-12">
+    <div
+      ref={containerRef}
+      className="c-space pt-10 pb-20 mx-4 md:mx-20 max-w-full overflow-x-hidden"
+    >
+      <h2 className="text-3xl md:text-4xl font-bold tracking-wide text-[#3A2F2A] text-center mb-12">
         My Work Experience
       </h2>
 
@@ -91,35 +94,42 @@ export const Timeline = ({ data }) => {
           <div
             key={index}
             id={`timeline-item-${index}`}
-            className={`flex flex-col md:flex-row justify-start pt-4 md:pt-16 md:gap-8 transition-colors duration-500 ${
+            className={`flex flex-col md:flex-row justify-start py-6 md:py-16 gap-4 md:gap-8 transition-colors duration-500 ${
               isActive ? "text-gray-700" : "text-gray-400"
-            }`}
+            } max-w-full`}
           >
-            <div className="sticky top-20 z-40 flex flex-col self-start max-w-xs md:max-w-sm md:w-full">
-              <div className="hidden md:flex flex-col gap-2 text-xl font-bold md:pl-0 md:text-4xl">
+            <div className="hidden md:flex md:sticky md:top-20 z-40 flex-col self-start max-w-xs w-full">
+              <div className="flex flex-col gap-2 text-xl md:text-4xl font-bold">
                 <h3>
                   <AnimatedLetters text={item.date} isActive={isActive} />
                 </h3>
-                <h3 className="text-3xl">
+                <h3 className="md:text-3xl">
                   <AnimatedLetters text={item.title} isActive={isActive} />
                 </h3>
-                <h3 className="text-3xl">
+                <h3 className="md:text-3xl">
                   <AnimatedLetters text={item.job} isActive={isActive} />
                 </h3>
-                <h4 className="text-2xl">
+                <h4 className="md:text-2xl">
                   <AnimatedLetters text={item.location} isActive={isActive} />
                 </h4>
               </div>
             </div>
 
-            <div className="relative w-full pl-0 md:pl-4 mt-6 md:mt-0">
-              <div className="block mb-4 text-2xl font-bold text-left md:hidden">
-                <h3>{item.date}</h3>
-                <h3>{item.job}</h3>
+            <div className="md:hidden mb-4 pb-4 border-b border-gray-200 max-w-full">
+              <div className="flex flex-col gap-1 font-bold text-left break-words">
+                <h3 className="text-lg">{item.date}</h3>
+                <h3 className="text-xl">{item.title}</h3>
+                <h3 className="text-lg">{item.job}</h3>
+                <h4 className="text-base opacity-80">{item.location}</h4>
               </div>
+            </div>
 
+            <div className="w-full md:pl-4 flex-1 max-w-full">
               {item.contents.map((content, i) => (
-                <p key={i} className="mb-3 font-normal text-gray-600">
+                <p
+                  key={i}
+                  className="mb-3 text-sm md:text-base font-normal text-gray-600 break-words"
+                >
                   <AnimatedLetters text={content} isActive={isActive} />
                 </p>
               ))}
