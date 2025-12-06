@@ -60,15 +60,30 @@ const Nav = ({ openNav }: Props) => {
         {/* NavLinks */}
         <div className="hidden lg:flex items-center space-x-10">
           {navLinks.map((link) => (
-            <Link href={link.url} key={link.id} className="relative group">
+            <button
+              key={link.id}
+              onClick={(e) => {
+                e.preventDefault();
+                const id = link.url.replace("#", "");
+                const element = document.getElementById(id);
+                if (element) {
+                  element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }}
+              className="relative group cursor-pointer"
+            >
               <p className="text-white font-semibold">{link.label}</p>
               <span
                 className="absolute left-0 -bottom-5 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full"
                 style={{ backgroundColor: "#A67B5B" }}
               />
-            </Link>
+            </button>
           ))}
         </div>
+
         {/* Button */}
         <div className="flex items-center space-x-4">
           <a

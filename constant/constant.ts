@@ -1,28 +1,77 @@
 export const navLinks = [
   {
     id: 1,
-    url: "#",
+    url: "#home",
     label: "Home",
   },
   {
     id: 2,
-    url: "#",
+    url: "#about",
     label: "About",
   },
   {
     id: 3,
-    url: "#",
+    url: "#education",
     label: "Education",
   },
   {
     id: 4,
-    url: "#",
+    url: "#experience",
     label: "Experience",
   },
   {
     id: 5,
-    url: "#",
+    url: "#projects",
     label: "Projects",
+  },
+];
+
+export const sections = [
+  {
+    title: "Mon parcours",
+    description:
+      "Passionnée par le design raffiné, les interfaces modernes et l'expérience utilisateur élégante avec 4+ ans d'expérience en développement full-stack.",
+    listItems: [
+      "Concordia CS Graduate",
+      "Kookmin Bank Capital Markets",
+      "Multilingual: EN/FR",
+    ],
+  },
+  {
+    title: "Compétences",
+    description:
+      "Maîtrise des technologies modernes pour créer des expériences utilisateur fluides et performantes.",
+    listItems: [
+      "React/Next.js",
+      "Tailwind CSS",
+      "Python/R",
+      "Three.js",
+      "Agile/Jira",
+    ],
+  },
+  {
+    title: "Technologies",
+    description:
+      "Stack technique complète pour des applications scalables et modernes.",
+    listItems: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Three.js",
+      "Python",
+    ],
+  },
+  {
+    title: "Expérience",
+    description:
+      "Projets concrets en finance, analytics et développement web dans des environnements multinationaux.",
+    listItems: [
+      "Capital Markets Intern",
+      "Web Development",
+      "Financial Analytics",
+      "Concordia Research",
+    ],
   },
 ];
 

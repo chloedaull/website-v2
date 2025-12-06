@@ -3,7 +3,7 @@ import { ResumeAnimation } from "@/component/ResumeAnimation"; // Default export
 
 const Resume = () => {
   return (
-    <div className="w-full" id="resume">
+    <div className="w-full">
       <ResumeAnimation />
     </div>
   );

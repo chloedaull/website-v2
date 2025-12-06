@@ -6,7 +6,7 @@ const HomePage = async ({ params }: { params: { id: string } }) => {
   return (
     <div>
       {/* HERO */}
-      <div className="relative h-[100vh] w-full">
+      <div className="relative h-[100vh] w-full" id="home">
         <Image
           src="/background.webp"
           alt="Hero background"

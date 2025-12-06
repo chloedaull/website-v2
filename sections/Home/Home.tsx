@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Home = () => {
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden" id="about">
       <About />
       <Experience />
       <div className="relative h-[100vh] w-full">
