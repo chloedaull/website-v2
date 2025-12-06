@@ -49,13 +49,16 @@ export default function Cards() {
         <div className="w-full lg:w-2/3 flex items-stretch lg:items-center">
           <div className="w-full max-w-2xl flex-1 p-4 sm:p-6 lg:p-8 mx-auto bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-xl lg:shadow-2xl border border-[#A67B5B]/10 transition-all duration-500 min-h-[300px] sm:min-h-[350px]">
             {activeSection !== null ? (
+              /* EXISTING CARD CONTENT */
               <div className="space-y-4 sm:space-y-6 h-full flex flex-col justify-center">
                 <h3 className="text-2xl sm:text-3xl font-bold text-[#3A2F2A]">
                   {sections[activeSection].title}
                 </h3>
+
                 <p className="text-base sm:text-lg text-[#3A2F2A]/80 leading-relaxed flex-1">
                   {sections[activeSection].description}
                 </p>
+
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-sm sm:text-base">
                   {sections[activeSection].listItems.map((item, idx) => (
                     <li
@@ -68,7 +71,19 @@ export default function Cards() {
                   ))}
                 </ul>
               </div>
-            ) : null}
+            ) : (
+              /* DEFAULT BOILERPLATE IMAGE CARD */
+              <div className="flex flex-col items-center justify-center h-full w-full">
+                <img
+                  src="flowers.JPG"
+                  alt="Default illustration"
+                  className="w-150 h-60 object-cover"
+                />
+                <p className="text-lg sm:text-xl text-[#3A2F2A] mt-5">
+                  Select a section to learn more
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

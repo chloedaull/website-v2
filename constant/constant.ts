@@ -128,3 +128,30 @@ export const folders = [
     thumbnail: "/CVfrancaisThumbnail.webp",
   },
 ];
+
+export const projects = [
+  {
+    id: 1,
+    title: "Kookmin Bank Dashboard",
+    date: "Summer 2023",
+    shortDesc: "Capital Markets analytics platform",
+    image: "/projects/kookmin-dashboard.jpg",
+    link: "https://example.com/project1",
+  },
+  {
+    id: 2,
+    title: "Personal Portfolio",
+    date: "2025",
+    shortDesc: "Modern React/Next.js portfolio site",
+    image: "/projects/portfolio.jpg",
+    link: "https://example.com/project1",
+  },
+  {
+    id: 3,
+    title: "Concordia Research",
+    date: "2024",
+    shortDesc: "Learned Index Structures - Java/ML",
+    image: "/projects/research.jpg",
+    link: "https://example.com/project1",
+  },
+];

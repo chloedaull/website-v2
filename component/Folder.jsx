@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { folders } from "@/constant/constant";
 
-export const ResumeAnimation = () => {
+export const Folder = () => {
   const [hoveredCV, setHoveredCV] = useState(null);
 
   return (

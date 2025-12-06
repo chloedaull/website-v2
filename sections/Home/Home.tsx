@@ -3,6 +3,8 @@ import About from "./About/About";
 import Experience from "./Experience/Experience";
 import Resume from "./Resume/Resume";
 import Image from "next/image";
+//import { Project } from "../Project/Project";
+//import { projects } from "@/constant/constant"; <Project projects={projects} />
 
 const Home = () => {
   return (
