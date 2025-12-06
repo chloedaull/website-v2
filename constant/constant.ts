@@ -51,4 +51,31 @@ export const experiences = [
       "Reduced API latency by 15% by refactoring Django views and adopting async request handling.",
     ],
   },
+  {
+    title: "Full Stack Developer Intern",
+    date: "June 2021 - June 2022",
+    location: "Singapore",
+    job: "Media Platforms",
+    contents: [
+      "Optimized front-end performance, improving page load speed by 25% by restructuring HTML/CSS and implementing lazy loading strategies.",
+      "Increased backend query performance by 30% through indexing and redesigning filtering logic.",
+      "Modularized React UI components, boosting user engagement by 20%.",
+      "Reduced API latency by 15% by refactoring Django views and adopting async request handling.",
+    ],
+  },
+];
+
+export const folders = [
+  {
+    id: "en",
+    label: "English CV",
+    cvLink: "anglaisMontrealCV.pdf",
+    thumbnail: "/CVanglaisThumbnail.webp",
+  },
+  {
+    id: "fr",
+    label: "French CV",
+    cvLink: "françaisMontrealCV.pdf",
+    thumbnail: "/CVfrancaisThumbnail.webp",
+  },
 ];

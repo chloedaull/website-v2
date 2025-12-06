@@ -1,78 +1,135 @@
 "use client";
-import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
-export const Timeline = ({ data }) => {
-  const ref = useRef(null);
-  const containerRef = useRef(null);
-  const [height, setHeight] = useState(0);
+const AnimatedLetters = ({ text, isActive }) => {
+  const [highlightCount, setHighlightCount] = useState(0);
 
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
+    if (!isActive) {
+      setHighlightCount(0);
+      return;
     }
-  }, [ref]);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 10%", "end 50%"],
-  });
+    let current = 0;
+    const maxCount = text.length;
+    const interval = setInterval(() => {
+      current++;
+      if (current > maxCount) {
+        clearInterval(interval);
+      } else {
+        setHighlightCount(current);
+      }
+    }, 30);
 
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
-  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+    return () => clearInterval(interval);
+  }, [isActive, text.length]);
 
   return (
-    <div className="c-space pt-5 pb-0" ref={containerRef}>
-      <h2 className="text-4xl font-bold tracking-wide text-[#3A2F2A] text-center">
+    <span>
+      {text.split("").map((char, i) => (
+        <span
+          key={i}
+          style={{
+            color:
+              i < highlightCount
+                ? "#4A5568" /* elegant slate gray */
+                : "#A0AEC0" /* soft gray */,
+            transition: "color 0.3s ease",
+            whiteSpace: "pre",
+          }}
+        >
+          {char}
+        </span>
+      ))}
+    </span>
+  );
+};
+
+export const Timeline = ({ data }) => {
+  const containerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (!containerRef.current) return;
+
+      const windowHeight = window.innerHeight;
+
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      data.forEach((_, i) => {
+        const item = document.getElementById(`timeline-item-${i}`);
+        if (!item) return;
+
+        const rect = item.getBoundingClientRect();
+        const itemCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(windowHeight / 2 - itemCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [data]);
+
+  return (
+    <div ref={containerRef} className="c-space pt-10 pb-20 mx-4 md:mx-20">
+      <h2 className="text-4xl font-bold tracking-wide text-[#3A2F2A] text-center mb-12">
         My Work Experience
       </h2>
-      <div ref={ref} className="relative ml-20 mr-20">
-        {data.map((item, index) => (
+
+      {data.map((item, index) => {
+        const isActive = index === activeIndex;
+
+        return (
           <div
             key={index}
-            className="flex justify-start pt-0 md:pt-40 md:gap-10"
+            id={`timeline-item-${index}`}
+            className={`flex flex-col md:flex-row justify-start pt-4 md:pt-16 md:gap-8 transition-colors duration-500 ${
+              isActive ? "text-gray-700" : "text-gray-400"
+            }`}
           >
-            <div className="sticky z-40 flex flex-col items-center self-start max-w-xs md:flex-row top-40 lg:max-w-sm md:w-full">
-              <div className="absolute flex items-center justify-center w-10 h-10 rounded-full -left-[15px] bg-midnight">
-                <div className="w-4 h-4 p-2 border rounded-full bg-neutral-800 border-neutral-700" />
-              </div>
-              <div className="flex-col hidden gap-2 text-xl font-bold md:flex md:pl-20 md:text-4xl text-neutral-300">
-                <h3>{item.date}</h3>
-                <h3 className="text-3xl text-neutral-400">{item.title}</h3>
-                <h3 className="text-3xl text-neutral-500">{item.job}</h3>
-                <h4 className="text-2xl text-neutral-300">{item.location}</h4>
+            <div className="sticky top-20 z-40 flex flex-col self-start max-w-xs md:max-w-sm md:w-full">
+              <div className="hidden md:flex flex-col gap-2 text-xl font-bold md:pl-0 md:text-4xl">
+                <h3>
+                  <AnimatedLetters text={item.date} isActive={isActive} />
+                </h3>
+                <h3 className="text-3xl">
+                  <AnimatedLetters text={item.title} isActive={isActive} />
+                </h3>
+                <h3 className="text-3xl">
+                  <AnimatedLetters text={item.job} isActive={isActive} />
+                </h3>
+                <h4 className="text-2xl">
+                  <AnimatedLetters text={item.location} isActive={isActive} />
+                </h4>
               </div>
             </div>
 
-            <div className="relative w-full pl-0 pr-4 md:pl-4">
-              <div className="block mb-4 text-2xl font-bold text-left text-neutral-300 md:hidden ">
+            <div className="relative w-full pl-0 md:pl-4 mt-6 md:mt-0">
+              <div className="block mb-4 text-2xl font-bold text-left md:hidden">
                 <h3>{item.date}</h3>
                 <h3>{item.job}</h3>
               </div>
-              {item.contents.map((content, index) => (
-                <p className="mb-3 font-normal text-neutral-400" key={index}>
-                  {content}
+
+              {item.contents.map((content, i) => (
+                <p key={i} className="mb-3 font-normal text-gray-600">
+                  <AnimatedLetters text={content} isActive={isActive} />
                 </p>
               ))}
             </div>
           </div>
-        ))}
-        <div
-          style={{
-            height: height + "px",
-          }}
-          className="absolute md:left-1 left-1 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
-        >
-          <motion.div
-            style={{
-              height: heightTransform,
-              opacity: opacityTransform,
-            }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-purple-500 via-lavender/50 to-transparent from-[0%] via-[10%] rounded-full"
-          />
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 };
