@@ -10,7 +10,7 @@ const font = Rethink_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Chloe's Website",
+  title: "Chloe's Personal Website",
   description: "Chloe's Webiste using Next.js",
 };
 

@@ -10,106 +10,83 @@ export const navLinks = [
     label: "About",
   },
   {
-    id: 3,
-    url: "#education",
-    label: "Education",
-  },
-  {
     id: 4,
     url: "#experience",
     label: "Experience",
-  },
-  {
-    id: 5,
-    url: "#projects",
-    label: "Projects",
   },
 ];
 
 export const sections = [
   {
-    title: "Mon parcours",
+    title: "My journey",
     description:
-      "Passionnée par le design raffiné, les interfaces modernes et l'expérience utilisateur élégante avec 4+ ans d'expérience en développement full-stack.",
+      "Hi there! My name is Chloe Daull, a recent Computer Science Graduate from Concordia University. I love learning about software development, data analytics and Machine Learning.",
     listItems: [
-      "Concordia CS Graduate",
-      "Kookmin Bank Capital Markets",
-      "Multilingual: EN/FR",
-    ],
-  },
-  {
-    title: "Compétences",
-    description:
-      "Maîtrise des technologies modernes pour créer des expériences utilisateur fluides et performantes.",
-    listItems: [
-      "React/Next.js",
-      "Tailwind CSS",
-      "Python/R",
-      "Three.js",
-      "Agile/Jira",
+      "Concordia University CS graduate",
+      "Grew up in Singapore",
+      "French and Korean",
+      "Billingual: EN/FR",
     ],
   },
   {
     title: "Technologies",
     description:
-      "Stack technique complète pour des applications scalables et modernes.",
-    listItems: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind",
-      "Three.js",
-      "Python",
-    ],
+      "I have experience working with an array of languages, framworks and tools. Here are some of them:",
+    listItems: ["Java", "React", "Next.js", "TypeScript", "Tailwind", "Python"],
   },
   {
-    title: "Expérience",
+    title: "Experience",
     description:
-      "Projets concrets en finance, analytics et développement web dans des environnements multinationaux.",
+      "Delivered real-world projects in finance, analytics, and web development across multinational environments.",
     listItems: [
       "Capital Markets Intern",
       "Web Development",
-      "Financial Analytics",
+      "AWS Cloud Practitioner Certificate",
       "Concordia Research",
     ],
+  },
+  {
+    title: "Locations",
+    description:
+      "Currently living in Montreal, open to exploring opportunities anywhere from Montreal, Europe and Singapore. My visa situation in each location:",
+    listItems: ["EU passport", "Singapore PR", "Canada PGWP - 3 years"],
   },
 ];
 
 export const experiences = [
   {
-    title: "Full Stack Developer Intern",
-    date: "June 2021 - June 2022",
-    location: "Singapore",
-    job: "Media Platforms",
+    title: "Software Developer (Contract)",
+    date: "June 2025 - October 2025",
+    location: "Montreal, QC",
+    job: "369 TechLabs",
     contents: [
-      "Optimized front-end performance, improving page load speed by 25% by restructuring HTML/CSS and implementing lazy loading strategies.",
-      "Increased backend query performance by 30% through indexing and redesigning filtering logic.",
-      "Modularized React UI components, boosting user engagement by 20%.",
-      "Reduced API latency by 15% by refactoring Django views and adopting async request handling.",
+      "Developed a user-facing application with React, Node.js, and TypeScript, implementing 20+ core features including item tracking, data search, and real-time updates for a smart home device.",
+      "Built and maintained back-end APIs in Python and JavaScript to synchronize records between external MariaDB and internal OPFS databases, using Redux to ensure real-time UI updates.",
+      "Designed and implemented MySQL databases to manage information for 60+ tracked items, creating efficient schemas and queries that improved data retrieval speed and supported real-time application features.",
+      "Designed embedded software for a microcontroller-based device, integrating hardware and software to enable efficient device operation and persistent tracking of an expanding range of categorized objects.",
+      "Worked in an Agile environment using Jira for sprint planning, backlog management, and task tracking.",
     ],
   },
   {
-    title: "Full Stack Developer Intern",
-    date: "June 2021 - June 2022",
-    location: "Singapore",
-    job: "Media Platforms",
+    title: "Software Developer Intern",
+    date: "Jan 2025 - April 2025",
+    location: "Laval, QC",
+    job: "WSP Canada",
     contents: [
-      "Optimized front-end performance, improving page load speed by 25% by restructuring HTML/CSS and implementing lazy loading strategies.",
-      "Increased backend query performance by 30% through indexing and redesigning filtering logic.",
-      "Modularized React UI components, boosting user engagement by 20%.",
-      "Reduced API latency by 15% by refactoring Django views and adopting async request handling.",
+      "Developed in-house applications with HTML/CSS enhancements, improving usability for a department of 200+ employees.",
+      "Programmed and deployed a Python-based Excel processing pipeline on Azure Functions, containerized with Docker and automated via Power Automate, reducing manual processing time by 80%.",
+      "Built a PDF contract converter in Python using PyPDF2 and Pandas to automate organization of 20,000+ client contracts, achieving a 70% reduction in contract transfer time.",
     ],
   },
   {
-    title: "Full Stack Developer Intern",
-    date: "June 2021 - June 2022",
-    location: "Singapore",
-    job: "Media Platforms",
+    title: "Smart Sales Intern",
+    date: "May 2023 - August 2023",
+    location: "Montreal, QC",
+    job: "Bombardier",
     contents: [
-      "Optimized front-end performance, improving page load speed by 25% by restructuring HTML/CSS and implementing lazy loading strategies.",
-      "Increased backend query performance by 30% through indexing and redesigning filtering logic.",
-      "Modularized React UI components, boosting user engagement by 20%.",
-      "Reduced API latency by 15% by refactoring Django views and adopting async request handling.",
+      "Monitored and tracked customer aircraft flight hours and maintenance status.",
+      "Developed an AI-integrated aircraft maintenance prediction model using MS PowerApps and Power BI, improving maintenance forecasting accuracy by 40%.",
+      "Collaborated in a team of 4 engineers, managing cross-functional workflows, setting sprint goals, and conducting daily stand-ups to ensure timely project delivery.",
     ],
   },
 ];
@@ -153,5 +130,18 @@ export const projects = [
     shortDesc: "Learned Index Structures - Java/ML",
     image: "/projects/research.jpg",
     link: "https://example.com/project1",
+  },
+];
+
+export const mySocials = [
+  {
+    name: "Linkedin",
+    href: "https://www.linkedin.com/in/chloe-daull/",
+    icon: "linkedin1.svg",
+  },
+  {
+    name: "Github",
+    href: "https://github.com/chloedaull",
+    icon: "github.svg",
   },
 ];

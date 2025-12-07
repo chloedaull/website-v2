@@ -18,7 +18,7 @@ export default function Cards() {
 
   return (
     <section className="w-full bg-gradient-to-b from-slate-50 to-white py-12 sm:py-20 px-4 sm:px-8 min-h-[70vh]">
-      <h2 className="text-4xl font-bold tracking-wide text-[#3A2F2A] text-center mb-12">
+      <h2 className="text-4xl font-bold tracking-wide text-[#3A2F2A] text-center">
         About Me
       </h2>
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6 lg:gap-16 min-h-[450px] sm:min-h-[500px] lg:min-h-[550px]">
@@ -77,11 +77,8 @@ export default function Cards() {
                 <img
                   src="flowers.JPG"
                   alt="Default illustration"
-                  className="w-150 h-60 object-cover"
+                  className="w-150 h-70 object-cover"
                 />
-                <p className="text-lg sm:text-xl text-[#3A2F2A] mt-5">
-                  Select a section to learn more
-                </p>
               </div>
             )}
           </div>

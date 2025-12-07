@@ -79,8 +79,8 @@ export const Timeline = ({ data }) => {
   }, [data]);
 
   return (
-    <div ref={containerRef} className="c-space pt-10 pb-20 mx-4 md:mx-20">
-      <h2 className="text-4xl font-bold tracking-wide text-[#3A2F2A] text-center mb-12">
+    <div ref={containerRef} className="c-space pt-0 pb-20 mx-4 md:mx-20">
+      <h2 className="text-4xl font-bold tracking-wide text-[#3A2F2A] text-center m-12">
         My Work Experience
       </h2>
 
@@ -98,13 +98,13 @@ export const Timeline = ({ data }) => {
             <div className="sticky top-20 z-40 flex flex-col self-start max-w-xs md:max-w-sm md:w-full">
               <div className="hidden md:flex flex-col gap-2 text-xl font-bold md:text-4xl">
                 <h3>
-                  <AnimatedLetters text={item.date} isActive={isActive} />
-                </h3>
-                <h3 className="text-3xl">
                   <AnimatedLetters text={item.title} isActive={isActive} />
                 </h3>
                 <h3 className="text-3xl">
                   <AnimatedLetters text={item.job} isActive={isActive} />
+                </h3>
+                <h3 className="text-3xl">
+                  <AnimatedLetters text={item.date} isActive={isActive} />
                 </h3>
                 <h4 className="text-2xl">
                   <AnimatedLetters text={item.location} isActive={isActive} />
@@ -123,7 +123,7 @@ export const Timeline = ({ data }) => {
               {item.contents.map((content, i) => (
                 <p
                   key={i}
-                  className="mb-3 font-normal text-gray-600 break-words ml-20"
+                  className="mb-3 font-normal text-base text-gray-600 break-words ml-2"
                 >
                   <AnimatedLetters text={content} isActive={isActive} />
                 </p>

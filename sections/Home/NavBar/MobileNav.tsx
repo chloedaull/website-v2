@@ -1,3 +1,5 @@
+"use client";
+
 import { navLinks } from "@/constant/constant";
 import Link from "next/link";
 import React from "react";
@@ -10,34 +12,37 @@ type Props = {
 
 const MobileNav = ({ closeNav, showNav }: Props) => {
   const navOpen = showNav ? "translate-x-0" : "translate-x-[-100%]";
+
   return (
     <div>
-      {/*Overlay*/}
+      {/* Overlay */}
       <div
         onClick={closeNav}
-        className={`fixed ${navOpen} inset-0 transform transition-all duration-500 z-[1002] bg-black opacity-70 w-full h-screen `}
+        className={`fixed ${navOpen} inset-0 transform transition-all duration-500 z-[1002] bg-black opacity-70 w-full h-screen`}
       ></div>
-      {/*NavLink*/}
+
+      {/* Nav Menu */}
       <div
         className={`text-white ${navOpen} fixed justify-center flex flex-col h-full transform transition-all duration-500 delay-300 w-[80%] sm:w-[60%] bg-black space-y-6 z-[1050]`}
       >
-        {navLinks.map((link) => {
-          {
-            /*NavLink content*/
-          }
-          return (
-            <Link key={link.id} href={link.url}>
-              <p className="text-white w-fit text-[20px] ml-6 border-b-[1.5px] pb-1 border-white sm:text-[30px]">
-                {link.label}
-              </p>
-            </Link>
-          );
-        })}
-        {/*Close Icon*/}
+        {/* Close Icon */}
         <CgClose
           onClick={closeNav}
           className="absolute border-white top-[0.7rem] left-[1.4rem] sm:w-8 sm:h-8 w-6 h-10"
         />
+
+        {/* Nav Links */}
+        {navLinks.map((link) => (
+          <Link
+            key={link.id}
+            href={link.url}
+            onClick={closeNav} // ← AUTO-CLOSE MENU HERE
+          >
+            <p className="text-white w-fit text-[20px] ml-6 border-b-[1.5px] pb-1 border-white sm:text-[30px]">
+              {link.label}
+            </p>
+          </Link>
+        ))}
       </div>
     </div>
   );
