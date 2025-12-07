@@ -3,7 +3,7 @@ import Cards from "@/component/Cards";
 
 const About = () => {
   return (
-    <div id="2">
+    <div id="about">
       <Cards />
     </div>
   );
